@@ -22,9 +22,11 @@ public class GameTimerDBHelper extends SQLiteOpenHelper {
 
 	public static final String TABLE_NAME_PREFERENCE = "gametimer_preference";
 
+	private Context context;
 
 	public GameTimerDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
 		super(context, name, factory, version);
+		this.context = context; 
 	}
 
 	/* (non-Javadoc)
@@ -56,13 +58,18 @@ public class GameTimerDBHelper extends SQLiteOpenHelper {
 		);
 		db.execSQL("DELETE FROM " + TABLE_NAME_SETTINGS);
 
+		final String text1 = context.getString(R.string.game_1);
+		final String text2 = context.getString(R.string.game_2);
+		final String text3 = context.getString(R.string.game_3);
+		final String noodle = context.getString(R.string.noodle);
+		
 		// èâä˙íl
 		final String[][] initialValues = {
 			// id, notify_text, notify_datetime, later_minute, later_hourminute_hour, later_hourminute_minute, at_time_day, at_time_hour, at_time_minute, now_point, full_point, restoration_interval_time, restoration_point, sns_type,                                             sort_order, private_audio_file, audio_file_long_path, audio_file_short_path
-			{"1",  "ÉQÅ[ÉÄ1",      "0",            "60",          "0",                   "0",                     "0",         "0",          "0",            "0",      "0",        "0",                       "0",               String.valueOf(GameTimerSettingsBean.SNSTYPE_OTHER),   "0",       "0",                 "",                   ""},
-			{"2",  "ÉQÅ[ÉÄ2",      "0",            "0",           "1",                   "30",                    "0",         "0",          "0",            "0",      "0",        "0",                       "0",               String.valueOf(GameTimerSettingsBean.SNSTYPE_OTHER),   "1",       "0",                 "",                   ""},
-			{"3",  "ÉQÅ[ÉÄ3",      "0",            "0",           "0",                   "0",                     "0",         "13",         "0",           "0",      "0",        "0",                       "0",               String.valueOf(GameTimerSettingsBean.SNSTYPE_OTHER),   "2",        "0",                "",                   ""},
-			{"4",  "ÉâÅ[ÉÅÉì",      "0",            "3",           "0",                   "0",                     "0",         "0",          "0",            "0",      "0",        "0",                       "0",               String.valueOf(GameTimerSettingsBean.SNSTYPE_OTHER),   "3",       "0",                 "",                   ""},
+			{"1",  text1,        "0",            "60",          "0",                   "0",                     "0",         "0",          "0",            "0",      "0",        "0",                       "0",               String.valueOf(GameTimerSettingsBean.SNSTYPE_OTHER),   "0",       "0",                 "",                   ""},
+			{"2",  text2,        "0",            "0",           "1",                   "30",                    "0",         "0",          "0",            "0",      "0",        "0",                       "0",               String.valueOf(GameTimerSettingsBean.SNSTYPE_OTHER),   "1",       "0",                 "",                   ""},
+			{"3",  text3,        "0",            "0",           "0",                   "0",                     "0",         "13",         "0",           "0",      "0",        "0",                       "0",               String.valueOf(GameTimerSettingsBean.SNSTYPE_OTHER),   "2",        "0",                "",                   ""},
+			{"4",  noodle,       "0",            "3",           "0",                   "0",                     "0",         "0",          "0",            "0",      "0",        "0",                       "0",               String.valueOf(GameTimerSettingsBean.SNSTYPE_OTHER),   "3",       "0",                 "",                   ""},
 			{"5",  "",           "0",            "0",           "0",                   "0",                     "0",         "0",          "0",            "0",      "0",        "0",                       "0",               String.valueOf(GameTimerSettingsBean.SNSTYPE_OTHER),   "4",        "0",                 "",                   ""},
 			{"6",  "",           "0",            "0",           "0",                   "0",                     "0",         "0",          "0",            "0",      "0",        "0",                       "0",               String.valueOf(GameTimerSettingsBean.SNSTYPE_OTHER),   "5",        "0",                "",                   ""},
 			{"7",  "",           "0",            "0",           "0",                   "0",                     "0",         "0",          "0",            "0",      "0",        "0",                       "0",               String.valueOf(GameTimerSettingsBean.SNSTYPE_OTHER),   "6",        "0",                "",                   ""},
@@ -174,7 +181,10 @@ public class GameTimerDBHelper extends SQLiteOpenHelper {
 							c.getInt(7),
 							c.getInt(8),
 							c.getInt(9),
-							c.getInt(10)));
+							c.getInt(10),
+							context.getString(R.string.days_later),
+							context.getString(R.string.minutes_later),
+							context.getString(R.string.hours)));
 				} while (c.moveToNext());
 			}
 			return beanList;
@@ -216,7 +226,10 @@ public class GameTimerDBHelper extends SQLiteOpenHelper {
 							c.getInt(7),
 							c.getInt(8),
 							c.getInt(9),
-							c.getInt(10));
+							c.getInt(10),
+							context.getString(R.string.days_later),
+							context.getString(R.string.minutes_later),
+							context.getString(R.string.hours));
 				return bean;
 			}
 			return null;
@@ -258,7 +271,10 @@ public class GameTimerDBHelper extends SQLiteOpenHelper {
 							c.getInt(7),
 							c.getInt(8),
 							c.getInt(9),
-							c.getInt(10));
+							c.getInt(10),
+							context.getString(R.string.days_later),
+							context.getString(R.string.minutes_later),
+							context.getString(R.string.hours));
 				return bean;
 			}
 			return null;

@@ -37,7 +37,7 @@
 		    		android:layout_width="0dip" 
 			    	android:layout_height="wrap_content" 
 					android:layout_weight="0.5"
-		    		android:text="↑"
+		    		android:text="@string/upper_arrow"
 		    		android:visibility="gone"
 					android:layout_gravity="center_vertical"
 		    	/>
@@ -46,14 +46,14 @@
 		    		android:layout_width="0dip" 
     				android:layout_height="wrap_content" 
 					android:layout_weight="3"
-		    		android:text="1"
+		    		android:text="@string/gametimer_list_button_dummy_text"
     			/>
 			    <Button
 					android:id="@+id/settings_dialog_start_stop_button_00"  
 		    		android:layout_width="0dip" 
     				android:layout_height="wrap_content" 
 					android:layout_weight="1"
-		    		android:text="開始"
+		    		android:text="@string/start_timer"
 					android:layout_gravity="center_vertical"
     			/>
     		</TableRow>
@@ -65,7 +65,7 @@
 		    		android:layout_width="0dip" 
 			    	android:layout_height="wrap_content" 
 					android:layout_weight="0.5"
-		    		android:text="↑"
+		    		android:text="@string/upper_arrow"
 		    		android:visibility="gone"
 					android:layout_gravity="center_vertical"
 		    	/>
@@ -74,14 +74,14 @@
 		    		android:layout_width="0dip" 
 			    	android:layout_height="wrap_content" 
 					android:layout_weight="3"
-		    		android:text="1"
+		    		android:text="@string/gametimer_list_button_dummy_text"
 		    	/>
 			    <Button
 					android:id="@+id/settings_dialog_start_stop_button_01"  
 		    		android:layout_width="0dip" 
     				android:layout_height="wrap_content" 
 					android:layout_weight="1"
-		    		android:text="開始"
+		    		android:text="@string/start_timer"
 					android:layout_gravity="center_vertical"
     			/>
 			</TableRow>
@@ -93,7 +93,7 @@
 		    		android:layout_width="0dip" 
 			    	android:layout_height="wrap_content" 
 					android:layout_weight="0.5"
-		    		android:text="↑"
+		    		android:text="@string/upper_arrow"
 		    		android:visibility="gone"
 					android:layout_gravity="center_vertical"
 		    	/>
@@ -102,14 +102,14 @@
 		    		android:layout_width="0dip" 
 			    	android:layout_height="wrap_content" 
 					android:layout_weight="3"
-		    		android:text="1"
+		    		android:text="@string/gametimer_list_button_dummy_text"
     			/>
 			    <Button
 					android:id="@+id/settings_dialog_start_stop_button_02"  
 		    		android:layout_width="0dip" 
     				android:layout_height="wrap_content" 
 					android:layout_weight="1"
-		    		android:text="開始"
+		    		android:text="@string/start_timer"
 					android:layout_gravity="center_vertical"
     			/>
 			</TableRow>
@@ -121,7 +121,7 @@
 		    		android:layout_width="0dip" 
 			    	android:layout_height="wrap_content" 
 					android:layout_weight="0.5"
-		    		android:text="↑"
+		    		android:text="@string/upper_arrow"
 		    		android:visibility="gone"
 					android:layout_gravity="center_vertical"
 		    	/>
@@ -130,14 +130,14 @@
 		    		android:layout_width="0dip" 
 			    	android:layout_height="wrap_content" 
 					android:layout_weight="3"
-		    		android:text="1"
+		    		android:text="@string/gametimer_list_button_dummy_text"
     			/>
 			    <Button
 					android:id="@+id/settings_dialog_start_stop_button_03"  
 		    		android:layout_width="0dip" 
     				android:layout_height="wrap_content" 
 					android:layout_weight="1"
-		    		android:text="開始"
+		    		android:text="@string/start_timer"
 					android:layout_gravity="center_vertical"
     			/>
 			</TableRow>
@@ -149,7 +149,7 @@
 		    		android:layout_width="0dip" 
 			    	android:layout_height="wrap_content" 
 					android:layout_weight="0.5"
-		    		android:text="↑"
+		    		android:text="@string/upper_arrow"
 		    		android:visibility="gone"
 					android:layout_gravity="center_vertical"
 		    	/>
@@ -158,14 +158,14 @@
 		    		android:layout_width="0dip" 
 			    	android:layout_height="wrap_content" 
 					android:layout_weight="3"
-		    		android:text="1"
+		    		android:text="@string/gametimer_list_button_dummy_text"
     			/>
 			    <Button
 					android:id="@+id/settings_dialog_start_stop_button_04"  
 		    		android:layout_width="0dip" 
     				android:layout_height="wrap_content" 
 					android:layout_weight="1"
-		    		android:text="開始"
+		    		android:text="@string/start_timer"
 					android:layout_gravity="center_vertical"
     			/>
 			</TableRow>
@@ -177,7 +177,7 @@
 		    		android:layout_width="0dip" 
 			    	android:layout_height="wrap_content" 
 					android:layout_weight="0.5"
-		    		android:text="↑"
+		    		android:text="@string/upper_arrow"
 		    		android:visibility="gone"
 					android:layout_gravity="center_vertical"
 		    	/>
@@ -186,14 +186,14 @@
 		    		android:layout_width="0dip" 
 			    	android:layout_height="wrap_content" 
 					android:layout_weight="3"
-		    		android:text="1"
+		    		android:text="@string/gametimer_list_button_dummy_text"
     			/>
 			    <Button
 					android:id="@+id/settings_dialog_start_stop_button_05"  
 		    		android:layout_width="0dip" 
     				android:layout_height="wrap_content" 
 					android:layout_weight="1"
-		    		android:text="開始"
+		    		android:text="@string/start_timer"
 					android:layout_gravity="center_vertical"
     			/>
 			</TableRow>
@@ -205,7 +205,7 @@
 		    		android:layout_width="0dip" 
 			    	android:layout_height="wrap_content" 
 					android:layout_weight="0.5"
-		    		android:text="↑"
+		    		android:text="@string/upper_arrow"
 		    		android:visibility="gone"
 					android:layout_gravity="center_vertical"
 		    	/>
@@ -214,14 +214,14 @@
 		    		android:layout_width="0dip" 
 			    	android:layout_height="wrap_content" 
 					android:layout_weight="3"
-		    		android:text="1"
+		    		android:text="@string/gametimer_list_button_dummy_text"
     			/>
 			    <Button
 					android:id="@+id/settings_dialog_start_stop_button_06"  
 		    		android:layout_width="0dip" 
     				android:layout_height="wrap_content" 
 					android:layout_weight="1"
-		    		android:text="開始"
+		    		android:text="@string/start_timer"
 					android:layout_gravity="center_vertical"
     			/>
 			</TableRow>
@@ -233,7 +233,7 @@
 		    		android:layout_width="0dip" 
 			    	android:layout_height="wrap_content" 
 					android:layout_weight="0.5"
-		    		android:text="↑"
+		    		android:text="@string/upper_arrow"
 		    		android:visibility="gone"
 					android:layout_gravity="center_vertical"
 		    	/>
@@ -242,14 +242,14 @@
 		    		android:layout_width="0dip" 
 			    	android:layout_height="wrap_content" 
 					android:layout_weight="3"
-		    		android:text="1"
+		    		android:text="@string/gametimer_list_button_dummy_text"
     			/>
 			    <Button
 					android:id="@+id/settings_dialog_start_stop_button_07"  
 		    		android:layout_width="0dip" 
     				android:layout_height="wrap_content" 
 					android:layout_weight="1"
-		    		android:text="開始"
+		    		android:text="@string/start_timer"
 					android:layout_gravity="center_vertical"
     			/>
 			</TableRow>
@@ -261,7 +261,7 @@
 		    		android:layout_width="0dip" 
 			    	android:layout_height="wrap_content" 
 					android:layout_weight="0.5"
-		    		android:text="↑"
+		    		android:text="@string/upper_arrow"
 		    		android:visibility="gone"
 					android:layout_gravity="center_vertical"
 		    	/>
@@ -270,14 +270,14 @@
 		    		android:layout_width="0dip" 
 			    	android:layout_height="wrap_content" 
 					android:layout_weight="3"
-		    		android:text="1"
+		    		android:text="@string/gametimer_list_button_dummy_text"
     			/>
 			    <Button
 					android:id="@+id/settings_dialog_start_stop_button_08"  
 		    		android:layout_width="0dip" 
     				android:layout_height="wrap_content" 
 					android:layout_weight="1"
-		    		android:text="開始"
+		    		android:text="@string/start_timer"
 					android:layout_gravity="center_vertical"
     			/>
 			</TableRow>
@@ -289,7 +289,7 @@
 		    		android:layout_width="0dip" 
 			    	android:layout_height="wrap_content" 
 					android:layout_weight="0.5"
-		    		android:text="↑"
+		    		android:text="@string/upper_arrow"
 		    		android:visibility="gone"
 					android:layout_gravity="center_vertical"
 		    	/>
@@ -298,14 +298,14 @@
 		    		android:layout_width="0dip" 
 			    	android:layout_height="wrap_content" 
 					android:layout_weight="3"
-		    		android:text="1"
+		    		android:text="@string/gametimer_list_button_dummy_text"
     			/>
 			    <Button
 					android:id="@+id/settings_dialog_start_stop_button_09"  
 		    		android:layout_width="0dip" 
     				android:layout_height="wrap_content" 
 					android:layout_weight="1"
-		    		android:text="開始"
+		    		android:text="@string/start_timer"
 					android:layout_gravity="center_vertical"
     			/>
 			</TableRow>

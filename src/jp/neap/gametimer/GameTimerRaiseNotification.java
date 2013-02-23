@@ -95,7 +95,7 @@ public class GameTimerRaiseNotification extends BroadcastReceiver {
 		PendingIntent pendingSnsIntent = PendingIntent.getActivity(context.getApplicationContext(), 0, snsIntent, PendingIntent.FLAG_UPDATE_CURRENT);
  
 		notification.icon = R.drawable.icon;
-		notification.tickerText = "ゲームタイマーからのお知らせです";
+		notification.tickerText = context.getString(R.string.notification_from_gametimer);
 		notification.number = 1;
 		notification.flags = notification.flags | Notification.FLAG_AUTO_CANCEL;
 

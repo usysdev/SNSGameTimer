@@ -79,9 +79,9 @@ public class GameTimerPreferenceActivity extends Activity {
 				{
 					final String audioFileShortPath = dbHelper.getProperty(db, "audioFileShortPath", "");
 					final Map<String,String> map = new HashMap<String,String>();
-					map.put("name", "お知らせ通知音");
+					map.put("name", getResources().getString(R.string.notification_sound));
 					if ( "".equals(audioFileShortPath) ) {
-						map.put("value", "システムデフォルト");
+						map.put("value", getResources().getString(R.string.system_default));
 					}
 					else {
 						map.put("value", audioFileShortPath);
@@ -143,7 +143,7 @@ public class GameTimerPreferenceActivity extends Activity {
 				{
 					final Map<String,String> map = preferenceDataList.get(0);
 					if ( "".equals(audioFileShortPath) ) {
-						map.put("value", "システムデフォルト");
+						map.put("value", getResources().getString(R.string.system_default));
 					}
 					else {
 						map.put("value", audioFileShortPath);

@@ -14,7 +14,7 @@
 						android:layout_width="fill_parent"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
-						android:text="お知らせ内容">
+						android:text="@string/notification_contents">
 					</TextView>
 				</TableRow>
 				<TableRow android:id="@+id/tableRow_editNotifyText" android:layout_width="wrap_content" android:layout_height="wrap_content">
@@ -34,7 +34,7 @@
 						android:layout_width="fill_parent"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
-						android:text="お知らせ日時">
+						android:text="@string/notification_datetime">
 					</TextView>
 				</TableRow>
 				<TableRow android:id="@+id/tableRow_notifyTimeSelector" android:layout_width="wrap_content" android:layout_height="wrap_content">
@@ -46,17 +46,17 @@
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:textSize="5pt"
-							android:text="○分後" />
+							android:text="@string/some_minutes_later" />
 						<RadioButton android:id="@+id/radioLaterHourMinute"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:textSize="5pt"
-							android:text="○時間○分後" />
+							android:text="@string/some_hours_some_minutes_later" />
 						<RadioButton android:id="@+id/radioAtTime"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:textSize="5pt"
-							android:text="○時○分に" />
+							android:text="@string/at_some_hour_some_minute" />
 					</RadioGroup>
 				</TableRow>
 			</TableLayout>
@@ -75,7 +75,7 @@
 						android:layout_width="fill_parent"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
-						android:text="分後">
+						android:text="@string/minutes_later">
 					</TextView>
 				</TableRow>
 			</TableLayout>
@@ -94,7 +94,7 @@
 						android:layout_width="0dip"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
-						android:text="時間">
+						android:text="@string/hours">
 					</TextView>
 					<Spinner
 						android:id="@+id/spinnerLaterHourMinuteMinute"
@@ -107,7 +107,7 @@
 						android:layout_width="0dip"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
-						android:text="分後">
+						android:text="@string/minutes_later">
 					</TextView>
 				</TableRow>
 			</TableLayout>
@@ -124,7 +124,7 @@
 						android:layout_width="0dip"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
-						android:text="時">
+						android:text="@string/at_hour">
 					</TextView>
 					<Spinner
 						android:id="@+id/spinnerAtTimeMinute"
@@ -137,7 +137,7 @@
 						android:layout_width="0dip"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
-						android:text="分">
+						android:text="@string/at_minute">
 					</TextView>
 				</TableRow>
 			</TableLayout>
@@ -163,7 +163,7 @@
 					<TextView
 						android:layout_width="fill_parent"
 						android:layout_height="wrap_content"
-						android:text="お知らせクリック時のリンク先">
+						android:text="@string/link_on_click_notification">
 					</TextView>
 				</TableRow>
 				<TableRow
@@ -185,7 +185,7 @@
 						android:layout_width="fill_parent"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
-						android:text="お知らせ内容">
+						android:text="@string/notification_contents">
 					</TextView>
 				</TableRow>
 				<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content">
@@ -204,7 +204,7 @@
 						android:layout_width="fill_parent"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
-						android:text="お知らせ日時">
+						android:text="@string/notification_datetime">
 					</TextView>
 				</TableRow>
 				<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content">
@@ -223,7 +223,7 @@
 						android:layout_width="fill_parent"
 						android:layout_height="wrap_content"
 						android:layout_weight="1"
-						android:text="お知らせクリック時のリンク先">
+						android:text="@string/link_on_click_notification">
 					</TextView>
 				</TableRow>
 				<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content">

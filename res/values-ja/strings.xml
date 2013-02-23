@@ -1,4 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <string name="app_name">ソーシャルゲーム効率化タイマー</string>
+	<string name="start_timer">開始</string>
+	<string name="upper_arrow">↑</string>
+	<string name="notification_contents">お知らせ内容</string>
+	<string name="notification_datetime">お知らせ日時</string>
+	<string name="some_minutes_later">○分後</string>
+	<string name="some_hours_some_minutes_later">○時間○分後</string>
+	<string name="at_some_hour_some_minute">○時○分に</string>
+	<string name="days_later">日後</string>
+	<string name="minutes_later">分後</string>
+	<string name="hours">時間</string>
+	<string name="at_hour">時</string>
+	<string name="at_minute">分</string>
+	<string name="link_on_click_notification">お知らせクリック時のリンク先</string>
+	<string name="system_default">システムデフォルト</string>
+	<string name="game_1">ゲーム1</string>
+	<string name="game_2">ゲーム2</string>
+	<string name="game_3">ゲーム3</string>
+	<string name="noodle">ラーメン</string>
+	<string name="notification_sound">お知らせ通知音</string>
+	<string name="notification_from_gametimer">ゲームタイマーからのお知らせです</string>
+	<string name="undefined">未設定</string>
+	<string name="timer_start">開始</string>
+	<string name="timer_stop">停止</string>
+	<string name="timer_cancel">キャンセル</string>
+	<string name="this_application">ゲームタイマー(このアプリ)</string>	
+	
+	<string-array name="day">
+		<item>-</item>
+		<item>2日後</item>
+		<item>3日後</item>
+    </string-array>
+    <string-array name="snsTypes">
+		<item>ゲームタイマー(このアプリ)</item>
+		<item>GREE</item>
+		<item>mobage</item>
+    </string-array>
 </resources>

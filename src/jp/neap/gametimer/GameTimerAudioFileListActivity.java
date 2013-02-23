@@ -54,7 +54,7 @@ public class GameTimerAudioFileListActivity extends Activity {
 		final List<String> audioFileList = listAudioFiles();
 		if ( audioFileList.size() > 0 ) {
 			// 最初はシステムデフォルト
-			adapter.add("システムデフォルト");
+			adapter.add(getResources().getString(R.string.system_default));
 			audioFileFullPathList.add("");
 			// SDカード上のファイル
 			for (int i = 0 ; i < audioFileList.size(); i++) {
@@ -64,7 +64,7 @@ public class GameTimerAudioFileListActivity extends Activity {
 			}
 		}
 		else {
-			adapter.add("システムデフォルト");
+			adapter.add(getResources().getString(R.string.system_default));
 			audioFileFullPathList.add("");
 		}
 		audioFileListView.setAdapter(adapter);

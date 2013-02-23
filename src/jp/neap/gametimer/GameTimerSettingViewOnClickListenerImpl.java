@@ -124,7 +124,7 @@ public class GameTimerSettingViewOnClickListenerImpl implements
 				textNotifyLinkView.setText("mobage");
 				break;
 			default:
-				textNotifyLinkView.setText("ゲームタイマー(このアプリ)");
+				textNotifyLinkView.setText(buttonView.getContext().getString(R.string.this_application));
 			}
         }
 
@@ -162,7 +162,9 @@ public class GameTimerSettingViewOnClickListenerImpl implements
 			radioGroupNotifyTimeSelector.setOnCheckedChangeListener(new NotifyTimeSelectorImpl(dialogView));
         }
 
-		final String positiveButtonLabel = !settingsBean.isActiveSchedule(dialogView.getContext()) ? "開始" : "停止";
+		final String positiveButtonLabel = !settingsBean.isActiveSchedule(dialogView.getContext()) ?
+				dialogView.getContext().getString(R.string.timer_start) :
+				dialogView.getContext().getString(R.string.timer_stop);
 
 		if (!settingsBean.isActiveSchedule(dialogView.getContext())) {
 			{
@@ -280,7 +282,13 @@ public class GameTimerSettingViewOnClickListenerImpl implements
         	    	    			// SNS の種類
         	        				spinnerSnsType.getSelectedItemPosition(),
         	        				// ソート順
-        	        				settingsBean.sortOrder());
+        	        				settingsBean.sortOrder(),
+        	        				// ○日後
+        	        				dialogView.getContext().getString(R.string.days_later),
+        	        				// ○分後
+        	        				dialogView.getContext().getString(R.string.minutes_later),
+        	        				// ○時間
+        	        				dialogView.getContext().getString(R.string.hours));
 
 	        	        	{
     	    	        		GameTimerDBHelper dbHelper = new GameTimerDBHelper(dialogView.getContext(), GameTimerDBHelper.DB_FILENAME, null, GameTimerDBHelper.DB_VERSION);
@@ -356,7 +364,13 @@ public class GameTimerSettingViewOnClickListenerImpl implements
 									settingsBean.atTimeHour(),
         		        			settingsBean.atTimeMinute(),
 									settingsBean.snsType(),
-        	        				settingsBean.sortOrder());
+        	        				settingsBean.sortOrder(),
+        	        				// ○日後
+        	        				dialogView.getContext().getString(R.string.days_later),
+        	        				// ○分後
+        	        				dialogView.getContext().getString(R.string.minutes_later),
+        	        				// ○時間
+        	        				dialogView.getContext().getString(R.string.hours));
 
 	        	        	{
     	    	        		GameTimerDBHelper dbHelper = new GameTimerDBHelper(dialogView.getContext(), GameTimerDBHelper.DB_FILENAME, null, GameTimerDBHelper.DB_VERSION);
@@ -397,7 +411,7 @@ public class GameTimerSettingViewOnClickListenerImpl implements
         			}
         		})
         	.setNegativeButton(
-        		"キャンセル", 
+        			dialogView.getContext().getString(R.string.timer_cancel), 
         		new DialogInterface.OnClickListener() {          
         			@Override
         			public void onClick(DialogInterface dialog, int which) {

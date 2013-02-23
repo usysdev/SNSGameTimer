@@ -55,6 +55,12 @@ public class GameTimerSettingsBean {
 
 	private final int sortOrder;
 
+	private final String textDaysLater;
+
+	private final String textMinutesLater;
+
+	private final String textHours;
+
 	private Boolean isActiveSchedule = null;
 
 	/**
@@ -71,7 +77,10 @@ public class GameTimerSettingsBean {
 				int atTimeHour,
 				int atTimeMinute,
 				int snsType,
-				int sortOrder) {
+				int sortOrder,
+				String textDaysLater,
+				String textMinutesLater,
+				String textHours) {
 		this.id = id;
 		this.notifyText = notifyText;
 		this.notifyDateTime = notifyDateTime;
@@ -83,6 +92,9 @@ public class GameTimerSettingsBean {
 		this.atTimeMinute = atTimeMinute;
 		this.snsType = snsType;
 		this.sortOrder = sortOrder;
+		this.textDaysLater = textDaysLater;
+		this.textMinutesLater = textMinutesLater; 
+		this.textHours = textHours;
 	}
 
 	/**
@@ -109,12 +121,18 @@ public class GameTimerSettingsBean {
 			int atTimeHourListIndex,
 			int atTimeMinuteListIndex,
 			int snsTypeIndex,
-			int sortOrder) {
+			int sortOrder,
+			String textDaysLater,
+			String textMinutesLater,
+			String textHours) {
 
 		this.id = id;
 		this.notifyText = notifyText;
 		this.snsType = GameTimerSettingsBean.snsTypeListIndexToSnsTypeValue(snsTypeIndex);
 		this.sortOrder = sortOrder;
+		this.textDaysLater = textDaysLater;
+		this.textMinutesLater = textMinutesLater; 
+		this.textHours = textHours;
 
 		if (!"".equals(notifyText)) {
 			int laterMinuteCandidate = StringUtil.toIntegerNumber(laterMinuteText, 0, 99999999);
@@ -233,6 +251,12 @@ public class GameTimerSettingsBean {
 
 	public int sortOrder() { return sortOrder; } 
 
+	public String textDaysLater() { return textDaysLater; };
+
+	public String textMinutesLater() { return textMinutesLater; };
+
+	public String textHours() { return textHours; };
+	
 	public int getNotifyDateTimeRadioId() {
 		if ( laterMinute > 0 ) {
 			return R.id.radioLaterMinute;
@@ -278,19 +302,8 @@ public class GameTimerSettingsBean {
 
 	public String getLabel(Context context) {
 		if ("".equals(notifyText)) {
-			return "–¢İ’è";
+			return context.getString(R.string.undefined);
 		}
-/*
-		if (laterMinute > 0) {
-			return notifyText + " (" + laterMinute + "•ªŒã)";
-		}
-		if (laterHourMinuteHour > 0 || laterHourMinuteMinute > 0) {
-			return notifyText + " (" + laterHourMinuteHour + "ŠÔ" + laterHourMinuteMinute + "•ªŒã)";
-		}
-		if (atTimeHour > 0 || atTimeMinute > 0) {
-			return notifyText + " (" + atTimeHour + "" + atTimeMinute + "•ª‚É)";
-		}
-*/
 		if ( notifyDateTime > 0 ) {
 			final Calendar c = Calendar.getInstance();
 			c.setTimeInMillis(notifyDateTime);
@@ -351,21 +364,25 @@ public class GameTimerSettingsBean {
 
 	public String getNotifyDateExpression() {
 		if ( laterMinute > 0 ) {
-			return laterMinute + "•ªŒã";
+			// ›•ªŒã
+			return laterMinute + textMinutesLater;
 		}
 		if ( (laterHourMinuteHour > 0) ||
 			 ((laterHourMinuteHour == 0) && (laterHourMinuteMinute > 0)) ) {
-			return laterHourMinuteHour + "ŠÔ" + laterHourMinuteMinute + "•ªŒã";
+			// ›ŠÔ›•ªŒã
+			return laterHourMinuteHour + textHours + laterHourMinuteMinute + textMinutesLater;
 		}
 		if ( atTimeHour > 0 ) {
 			final StringBuffer buffer = new StringBuffer();
 			if ( atTimeDay > DAY_CALC_AUTO ) {
+				// ›“úŒã
 				buffer.append((atTimeDay + 1))
-					  .append("“úŒã ");
+					  .append(textDaysLater);
 			}
 			buffer.append(String.format("%02d:%02d", atTimeHour - 1, atTimeMinute));
 			return buffer.toString();
 		}
-		return laterMinute + "•ªŒã";
+		// ›•ªŒã
+		return laterMinute + textMinutesLater;
 	}
 }

@@ -61,7 +61,10 @@ public class GameTimeStartStopButtonOnClickListenerImpl implements
 						settingsBean.atTimeHour(),
        		        	settingsBean.atTimeMinute(),
 						settingsBean.snsType(),
-        				settingsBean.sortOrder());
+        				settingsBean.sortOrder(),
+        				settingsBean.textDaysLater(),
+        				settingsBean.textMinutesLater(),
+        				settingsBean.textHours());
 
 			{
 				GameTimerDBHelper dbHelper = new GameTimerDBHelper(buttonView.getContext(), GameTimerDBHelper.DB_FILENAME, null, GameTimerDBHelper.DB_VERSION);
