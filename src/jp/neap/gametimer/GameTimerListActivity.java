@@ -20,7 +20,6 @@ import android.text.Html;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import jp.ne.linkshare.android.tgad.*; 
 
 
 public class GameTimerListActivity extends Activity
@@ -136,13 +135,6 @@ public class GameTimerListActivity extends Activity
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.gametimer_list);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title_bar);
-		
-		// TG組み込みの開始
-		{
-			final TGAdView adView = (TGAdView)findViewById(R.id.ad);
-			adView.requestAd(); 
-		}
-		// TG組み込みの終了
 
 		final List<GameTimerSettingsBean> beanList;
 		GameTimerDBHelper dbHelper = new GameTimerDBHelper(getApplicationContext(), GameTimerDBHelper.DB_FILENAME, null, GameTimerDBHelper.DB_VERSION);

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
 	xmlns:myapp="http://schemas.android.com/apk/res/jp.neap.gametimer"
 	android:id="@+id/gametimer_list_view"  
    	android:layout_width="fill_parent" 
@@ -14,14 +15,17 @@
     		android:orientation="vertical"
     		android:layout_width="fill_parent"
 	    	android:layout_height="60dip">
-			<jp.ne.linkshare.android.tgad.TGAdView
-				android:id="@+id/ad"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				myapp:background="black"
+			<com.google.ads.AdView
+					android:id="@+id/adView"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					ads:adUnitId="a150a5dbfd7a99c"
+					ads:adSize="BANNER"
+					ads:testDevices="TEST_EMULATOR, TEST_DEVICE_ID"
+					ads:loadAdOnCreate="true"
 			/>
 		</LinearLayout>
-		<TableLayout
+	    <TableLayout
 			android:layout_height="wrap_content"
 			android:layout_width="fill_parent"
 			android:layout_weight="1">
