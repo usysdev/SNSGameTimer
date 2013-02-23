@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="jp.neap.gametimer"
+      android:versionCode="3"
+      android:versionName="1.0.2">
+    <uses-sdk android:minSdkVersion="7" />
+
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+
+		<receiver android:name="GameTimerWidgetProvider" 
+				  android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+			</intent-filter>
+			<meta-data android:name="android.appwidget.provider" 
+					   android:resource="@xml/snsgametimer" />
+		</receiver>
+
+		<receiver android:name="GameTimerRaiseNotification">
+			<intent-filter>
+				<action android:name="jp.neap.gametimer.GAMETIMER_RAISE_NOTIFICATION_1" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="jp.neap.gametimer.GAMETIMER_RAISE_NOTIFICATION_2" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="jp.neap.gametimer.GAMETIMER_RAISE_NOTIFICATION_3" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="jp.neap.gametimer.GAMETIMER_RAISE_NOTIFICATION_4" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="jp.neap.gametimer.GAMETIMER_RAISE_NOTIFICATION_5" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="jp.neap.gametimer.GAMETIMER_RAISE_NOTIFICATION_6" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="jp.neap.gametimer.GAMETIMER_RAISE_NOTIFICATION_7" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="jp.neap.gametimer.GAMETIMER_RAISE_NOTIFICATION_8" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="jp.neap.gametimer.GAMETIMER_RAISE_NOTIFICATION_9" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="jp.neap.gametimer.GAMETIMER_RAISE_NOTIFICATION_10" />
+			</intent-filter>
+		</receiver>
+
+        <activity android:name="GameTimerListActivity"
+                  android:label="@string/app_name"
+                  android:theme="@style/GameTimerTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="GameTimerPreferenceActivity"
+                  android:label="@string/app_name"
+                  android:theme="@style/GameTimerTheme">
+        </activity>
+
+        <activity android:name="GameTimerAudioFileListActivity"
+                  android:label="@string/app_name"
+                  android:theme="@style/GameTimerTheme">
+        </activity>
+
+		<service android:name="GameTimerWidgetService">
+		</service>
+
+		<meta-data android:value="7hEMf695nfsg" android:name="TGAD_DEVELOPER_ID" />
+
+    </application>
+
+	<uses-permission android:name="android.permission.INTERNET" />
+
+</manifest>

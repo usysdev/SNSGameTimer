@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/gametimer_setting_scroll_view"  
+   	android:layout_width="fill_parent" 
+   	android:layout_height="fill_parent">
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:id="@+id/gametimer_setting_view"
+			android:orientation="vertical"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent">
+			<TableLayout android:id="@+id/tableLayout_notifyText" android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_weight="1">
+				<TableRow android:id="@+id/tableRow_notifyText" android:layout_width="wrap_content" android:layout_height="wrap_content">
+					<TextView
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="お知らせ内容">
+					</TextView>
+				</TableRow>
+				<TableRow android:id="@+id/tableRow_editNotifyText" android:layout_width="wrap_content" android:layout_height="wrap_content">
+					<EditText
+						android:id="@+id/editNotifyText"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:imeOptions="actionDone">
+						<requestFocus></requestFocus>
+					</EditText>
+				</TableRow>
+			</TableLayout>
+			<TableLayout android:id="@+id/tableLayout_notifyDateTimeLabel" android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_weight="1">
+				<TableRow android:id="@+id/tableRow_notifyDateTime" android:layout_width="wrap_content" android:layout_height="wrap_content">
+					<TextView
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="お知らせ日時">
+					</TextView>
+				</TableRow>
+				<TableRow android:id="@+id/tableRow_notifyTimeSelector" android:layout_width="wrap_content" android:layout_height="wrap_content">
+					<RadioGroup android:id="@+id/notifyTimeSelectorGroup"
+						android:orientation="horizontal"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content">
+						<RadioButton android:id="@+id/radioLaterMinute"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textSize="5pt"
+							android:text="○分後" />
+						<RadioButton android:id="@+id/radioLaterHourMinute"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textSize="5pt"
+							android:text="○時間○分後" />
+						<RadioButton android:id="@+id/radioAtTime"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textSize="5pt"
+							android:text="○時○分に" />
+					</RadioGroup>
+				</TableRow>
+			</TableLayout>
+			<TableLayout android:id="@+id/tableLayout_notifyLaterMinutes" android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_weight="1">
+				<TableRow android:id="@+id/tableRow_minutes" android:layout_width="wrap_content" android:layout_height="wrap_content">
+					<EditText
+						android:id="@+id/editLaterMinute"
+						android:layout_height="wrap_content"
+						android:layout_width="fill_parent"
+						android:layout_weight="1"
+						android:maxLength="8"
+						android:inputType="number"
+						android:imeOptions="actionDone">
+					</EditText>
+					<TextView
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="分後">
+					</TextView>
+				</TableRow>
+			</TableLayout>
+			<TableLayout android:id="@+id/tableLayout_notifyLaterHourMinute" android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_weight="1">
+				<TableRow android:id="@+id/tableRow_hourMinute" android:layout_width="wrap_content" android:layout_height="wrap_content">
+					<EditText
+						android:id="@+id/editLaterHourMinuteHour"
+						android:layout_height="wrap_content"
+						android:layout_width="0dip"
+						android:layout_weight="2"
+						android:maxLength="4"
+						android:inputType="number"
+						android:imeOptions="actionDone">
+					</EditText>
+					<TextView
+						android:layout_width="0dip"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="時間">
+					</TextView>
+					<Spinner
+						android:id="@+id/spinnerLaterHourMinuteMinute"
+						android:layout_height="wrap_content"
+						android:layout_width="0dip"
+						android:layout_weight="2"
+						android:entries="@array/fullMinute">
+					</Spinner>
+					<TextView
+						android:layout_width="0dip"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="分後">
+					</TextView>
+				</TableRow>
+			</TableLayout>
+			<TableLayout android:id="@+id/tableLayout_notifyAtTimeHourMinute" android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_weight="1">
+				<TableRow android:id="@+id/tableRow_atTimeHourMinute" android:layout_width="wrap_content" android:layout_height="wrap_content">
+					<Spinner
+						android:id="@+id/spinnerAtTimeHour"
+						android:layout_width="0dip"
+						android:layout_height="wrap_content"
+						android:layout_weight="2"
+						android:entries="@array/fullHour">
+					</Spinner>
+					<TextView
+						android:layout_width="0dip"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="時">
+					</TextView>
+					<Spinner
+						android:id="@+id/spinnerAtTimeMinute"
+						android:layout_height="wrap_content"
+						android:layout_width="0dip"
+						android:layout_weight="2"
+						android:entries="@array/fullMinute">
+					</Spinner>
+					<TextView
+						android:layout_width="0dip"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="分">
+					</TextView>
+				</TableRow>
+			</TableLayout>
+			<TableLayout android:id="@+id/tableLayout_notifyAtTimeHourMinute_day" android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_weight="1">
+				<TableRow android:id="@+id/tableRow_atTimeDay" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="right">
+					<Spinner
+						android:id="@+id/spinnerAtTimeDay"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:entries="@array/day">
+					</Spinner>
+				</TableRow>
+			</TableLayout>
+			<TableLayout
+						android:id="@+id/tableLayout_sns"
+						android:layout_height="wrap_content"
+						android:layout_width="fill_parent"
+						android:layout_weight="1">
+				<TableRow
+						android:id="@+id/tableRow_snsTitle"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content">
+					<TextView
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:text="お知らせクリック時のリンク先">
+					</TextView>
+				</TableRow>
+				<TableRow
+						android:id="@+id/tableRow_sns"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content">
+					<Spinner
+						android:id="@+id/spinnerSnsType"
+						android:layout_width="0dip"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:entries="@array/snsTypes">
+					</Spinner>
+				</TableRow>
+			</TableLayout>
+			<TableLayout android:id="@+id/tableLayout_showInfo" android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_weight="1">
+				<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content">
+					<TextView
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="お知らせ内容">
+					</TextView>
+				</TableRow>
+				<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content">
+					<TextView
+						android:id="@+id/textNotifyText"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:layout_marginBottom="4pt"
+						android:textSize="8pt"
+						android:text="">
+					</TextView>
+				</TableRow>
+				<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content">
+					<TextView
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="お知らせ日時">
+					</TextView>
+				</TableRow>
+				<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content">
+					<TextView
+						android:id="@+id/textNotifyDateTime"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:textSize="8pt"
+						android:layout_marginBottom="4pt"
+						android:text="">
+					</TextView>
+				</TableRow>
+				<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content">
+					<TextView
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:text="お知らせクリック時のリンク先">
+					</TextView>
+				</TableRow>
+				<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content">
+					<TextView
+						android:id="@+id/textNotifyLink"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:textSize="8pt"
+						android:layout_marginBottom="16pt"
+						android:text="">
+					</TextView>
+				</TableRow>
+			</TableLayout>
+	</LinearLayout>
+</ScrollView>

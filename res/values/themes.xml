@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<style name="GameTimerTheme" parent="android:Theme">
+		<item name="android:windowTitleSize">40dip</item>
+	</style>
+</resources> 
