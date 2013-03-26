@@ -3,6 +3,8 @@
  */
 package jp.neap.gametimer;
 
+import android.content.Context;
+
 
 public class StringUtil {
 	public static int toIntegerNumber(String text, long minValue, long maxValue) {
@@ -26,5 +28,12 @@ public class StringUtil {
 			values[i] = numberText.substring(i, i + 1);
 		}
 		return values;
+	}
+
+	public static boolean isJP(Context context) {
+		if ("JP".equals(context.getString(R.string.lang_test))) {
+			return true;
+		}
+		return false;
 	}
 }

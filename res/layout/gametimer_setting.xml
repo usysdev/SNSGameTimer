@@ -3,7 +3,7 @@
 	android:id="@+id/gametimer_setting_scroll_view"  
    	android:layout_width="fill_parent" 
    	android:layout_height="fill_parent">
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	<LinearLayout
 			android:id="@+id/gametimer_setting_view"
 			android:orientation="vertical"
 			android:layout_width="fill_parent"
@@ -177,6 +177,29 @@
 						android:layout_weight="1"
 						android:entries="@array/snsTypes">
 					</Spinner>
+				</TableRow>
+				<TableRow
+						android:id="@+id/tableRow_snsUrlTitle"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content">
+					<TextView
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:text="@string/sns_specified_url">
+					</TextView>
+				</TableRow>
+				<TableRow
+				    	android:id="@+id/tableRow_snsUrl"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content">
+					<EditText
+						android:id="@+id/editSnsUrl"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:singleLine="true"
+						android:imeOptions="actionDone">
+					</EditText>
 				</TableRow>
 			</TableLayout>
 			<TableLayout android:id="@+id/tableLayout_showInfo" android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_weight="1">

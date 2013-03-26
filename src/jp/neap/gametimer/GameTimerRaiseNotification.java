@@ -37,7 +37,8 @@ public class GameTimerRaiseNotification extends BroadcastReceiver {
 		final int beanId = intent.getIntExtra("beanId", 0);
 		final String notifyText = intent.getStringExtra("notifyText");
 		final int snsType = intent.getIntExtra("snsType", GameTimerSettingsBean.SNSTYPE_OTHER);
-
+		final String snsSpecifiedUrl = intent.getStringExtra("snsUrl");
+		
 		if (Logger.isDebugEnabled()) {
 			Logger.debug("raiseNoritication:beanId=" + beanId + ",notifyText=" + notifyText + ",snsType=" + snsType);
 		}
@@ -75,6 +76,9 @@ public class GameTimerRaiseNotification extends BroadcastReceiver {
 			break;
 		case GameTimerSettingsBean.SNSTYPE_MOBGA:
 			snsUri = "http://sp.mbga.jp/";
+			break;
+		case GameTimerSettingsBean.SNSTYPE_ANY_URL:
+			snsUri = snsSpecifiedUrl;
 			break;
 		}
 		if (Logger.isDebugEnabled()) {

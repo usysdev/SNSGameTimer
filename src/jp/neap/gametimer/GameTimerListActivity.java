@@ -106,6 +106,7 @@ public class GameTimerListActivity extends Activity
 		if (Logger.isDebugEnabled()) {
 			Logger.debug("GameTimerListActivity::onResume");
 		}
+		reCreateList();
 	}
 	protected void onPause() {
 		super.onPause();
@@ -136,22 +137,7 @@ public class GameTimerListActivity extends Activity
 		setContentView(R.layout.gametimer_list);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title_bar);
 
-		final List<GameTimerSettingsBean> beanList;
-		GameTimerDBHelper dbHelper = new GameTimerDBHelper(getApplicationContext(), GameTimerDBHelper.DB_FILENAME, null, GameTimerDBHelper.DB_VERSION);
-		SQLiteDatabase db = dbHelper.getReadableDatabase();
-		try {
-			beanList = dbHelper.listAllSorted(db);
-		}
-		finally {
-			db.close();
-		}
-
-		// ドラッグ中の位置を取得する。
-//		View frameView = (View)findViewById(R.id.gametimer_list_view);
-//		frameView.setOnTouchListener(this);
-	
-		// 一覧の各ボタンを設定する。
-		assignButtonList(beanList);
+		reCreateList();
 	}
 
 	@Override
@@ -295,6 +281,25 @@ public class GameTimerListActivity extends Activity
         }
         return retcode;
     }
+
+	private void reCreateList() {
+		final List<GameTimerSettingsBean> beanList;
+		GameTimerDBHelper dbHelper = new GameTimerDBHelper(getApplicationContext(), GameTimerDBHelper.DB_FILENAME, null, GameTimerDBHelper.DB_VERSION);
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		try {
+			beanList = dbHelper.listAllSorted(db);
+		}
+		finally {
+			db.close();
+		}
+
+		// ドラッグ中の位置を取得する。
+//		View frameView = (View)findViewById(R.id.gametimer_list_view);
+//		frameView.setOnTouchListener(this);
+
+		// 一覧の各ボタンを設定する。
+		assignButtonList(beanList);
+	}
 
 	private void drawButtonLabelList(List<GameTimerSettingsBean> beanList) {
 		for ( int listIndex = 0 ; listIndex < beanList.size() ; listIndex++ ) {

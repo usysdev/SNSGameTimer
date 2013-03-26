@@ -16,7 +16,7 @@ public class GameTimerDBHelper extends SQLiteOpenHelper {
 
 	public static final String DB_FILENAME = "snsgametimer.db";
 
-	public static final int DB_VERSION = 1;
+	public static final int DB_VERSION = 2;
 
 	public static final String TABLE_NAME_SETTINGS = "gametimer_settings";
 
@@ -54,6 +54,7 @@ public class GameTimerDBHelper extends SQLiteOpenHelper {
 				",private_audio_file INTEGER NOT NULL" +
 				",audio_file_long_path TEXT NOT NULL" +
 				",audio_file_short_path TEXT NOT NULL" +
+				",sns_url TEXT" + // 2013-02-26’Ç‰Á
 				")"
 		);
 		db.execSQL("DELETE FROM " + TABLE_NAME_SETTINGS);
@@ -98,6 +99,7 @@ public class GameTimerDBHelper extends SQLiteOpenHelper {
 					",private_audio_file" +
 					",audio_file_long_path" +
 					",audio_file_short_path" +
+					",sns_url" +
 					") VALUES (" +
 						initialValues[paramIndex][0] +				// id
 						",'" + initialValues[paramIndex][1] + "'" +	// notify_text
@@ -117,6 +119,7 @@ public class GameTimerDBHelper extends SQLiteOpenHelper {
 						"," + initialValues[paramIndex][15] +		// private_audio_file
 						",'" + initialValues[paramIndex][16] + "'" +// audio_file_long_path
 						",'" + initialValues[paramIndex][17] + "'" +// audio_file_short_path
+						",''" +										// sns_type
 						")");
 		}
 
@@ -147,6 +150,14 @@ public class GameTimerDBHelper extends SQLiteOpenHelper {
 	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		if (oldVersion == 1) {
+			if (newVersion == 2) {
+				db.execSQL(
+						"ALTER TABLE " + TABLE_NAME_SETTINGS + " " +
+						" ADD COLUMN sns_url TEXT");
+				db.execSQL("UPDATE " + TABLE_NAME_SETTINGS + " SET sns_url=''");
+			}
+		}
 	}
 
 	public List<GameTimerSettingsBean> listAllSorted(SQLiteDatabase db) {
@@ -164,6 +175,7 @@ public class GameTimerDBHelper extends SQLiteOpenHelper {
 						",at_time_minute" +
 						",sns_type" +
 						",sort_order" +
+						",sns_url" +
 						" FROM " + TABLE_NAME_SETTINGS +
 						" ORDER BY sort_order ASC",
 						new String[0]);
@@ -182,6 +194,7 @@ public class GameTimerDBHelper extends SQLiteOpenHelper {
 							c.getInt(8),
 							c.getInt(9),
 							c.getInt(10),
+							c.getString(11),
 							context.getString(R.string.days_later),
 							context.getString(R.string.minutes_later),
 							context.getString(R.string.hours)));
@@ -210,6 +223,7 @@ public class GameTimerDBHelper extends SQLiteOpenHelper {
 						",at_time_minute" +
 						",sns_type" +
 						",sort_order" +
+						",sns_url" +
 						" FROM " + TABLE_NAME_SETTINGS +
 						" WHERE id=?",
 						params);
@@ -227,6 +241,7 @@ public class GameTimerDBHelper extends SQLiteOpenHelper {
 							c.getInt(8),
 							c.getInt(9),
 							c.getInt(10),
+							c.getString(11),
 							context.getString(R.string.days_later),
 							context.getString(R.string.minutes_later),
 							context.getString(R.string.hours));
@@ -255,6 +270,7 @@ public class GameTimerDBHelper extends SQLiteOpenHelper {
 						",at_time_minute" +
 						",sns_type" +
 						",sort_order" +
+						",sns_url" +
 						" FROM " + TABLE_NAME_SETTINGS +
 						" WHERE sort_order=?",
 						params);
@@ -272,6 +288,7 @@ public class GameTimerDBHelper extends SQLiteOpenHelper {
 							c.getInt(8),
 							c.getInt(9),
 							c.getInt(10),
+							c.getString(11),
 							context.getString(R.string.days_later),
 							context.getString(R.string.minutes_later),
 							context.getString(R.string.hours));
@@ -297,6 +314,7 @@ public class GameTimerDBHelper extends SQLiteOpenHelper {
 		assoc.put("at_time_minute", new Integer(bean.atTimeMinute()));
 		assoc.put("sns_type", new Integer(bean.snsType()));
 		assoc.put("sort_order", new Integer(bean.sortOrder()));
+		assoc.put("sns_url", bean.snsUrl());
 
 		db.update(TABLE_NAME_SETTINGS, assoc, "id=?", new String[]{new Integer(bean.id()).toString()});
 	}

@@ -5,6 +5,6 @@
 		<item
 			android:id="@+id/global_preference"
 			android:icon="@android:drawable/ic_menu_preferences"
-			android:title="設定"/>
+			android:title="@string/preference_settings"/>
 	</group>
 </menu>

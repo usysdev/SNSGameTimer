@@ -28,7 +28,10 @@ public class GameTimerSettingsBean {
 	// モバゲー
     public static final int SNSTYPE_MOBGA = 1;
 
-	// その他
+	// 指定したURL
+    public static final int SNSTYPE_ANY_URL = 2;
+
+    // その他
     public static final int SNSTYPE_OTHER = 999;
 
 	private final int id; 
@@ -61,6 +64,8 @@ public class GameTimerSettingsBean {
 
 	private final String textHours;
 
+	private final String snsUrl; 
+
 	private Boolean isActiveSchedule = null;
 
 	/**
@@ -78,6 +83,7 @@ public class GameTimerSettingsBean {
 				int atTimeMinute,
 				int snsType,
 				int sortOrder,
+				String snsUrl,
 				String textDaysLater,
 				String textMinutesLater,
 				String textHours) {
@@ -92,6 +98,7 @@ public class GameTimerSettingsBean {
 		this.atTimeMinute = atTimeMinute;
 		this.snsType = snsType;
 		this.sortOrder = sortOrder;
+		this.snsUrl = snsUrl;
 		this.textDaysLater = textDaysLater;
 		this.textMinutesLater = textMinutesLater; 
 		this.textHours = textHours;
@@ -122,14 +129,17 @@ public class GameTimerSettingsBean {
 			int atTimeMinuteListIndex,
 			int snsTypeIndex,
 			int sortOrder,
+			String snsUrl,
 			String textDaysLater,
 			String textMinutesLater,
-			String textHours) {
+			String textHours,
+			boolean bJP) {
 
 		this.id = id;
 		this.notifyText = notifyText;
-		this.snsType = GameTimerSettingsBean.snsTypeListIndexToSnsTypeValue(snsTypeIndex);
+		this.snsType = GameTimerSettingsBean.snsTypeListIndexToSnsTypeValue(snsTypeIndex, bJP);
 		this.sortOrder = sortOrder;
+		this.snsUrl = snsUrl;
 		this.textDaysLater = textDaysLater;
 		this.textMinutesLater = textMinutesLater; 
 		this.textHours = textHours;
@@ -249,7 +259,9 @@ public class GameTimerSettingsBean {
 
 	public int snsType() { return snsType; } 
 
-	public int sortOrder() { return sortOrder; } 
+	public int sortOrder() { return sortOrder; }
+
+	public String snsUrl() { return snsUrl; }
 
 	public String textDaysLater() { return textDaysLater; };
 
@@ -276,28 +288,80 @@ public class GameTimerSettingsBean {
 	/**
 	 * snsType → リストボックスの位置
 	 */
-	public int snsTypeListIndex() {
-		switch (snsType) {
-		case SNSTYPE_GREE:
-			return 1;
-		case SNSTYPE_MOBGA:
-			return 2;
-		case SNSTYPE_OTHER:
-			return 0;
+	public int snsTypeListIndex(boolean bJP) {
+		if (bJP) {
+			switch (snsType) {
+			case SNSTYPE_GREE:
+				return 1;
+			case SNSTYPE_MOBGA:
+				return 2;
+			case SNSTYPE_ANY_URL:
+				return 3;
+			case SNSTYPE_OTHER:
+				return 0;
+			}
+		}
+		else {
+			switch (snsType) {
+			case SNSTYPE_GREE:
+				return 0;
+			case SNSTYPE_MOBGA:
+				return 0;
+			case SNSTYPE_ANY_URL:
+				return 1;
+			case SNSTYPE_OTHER:
+				return 0;
+			}
 		}
 		return 0;
 	}
 
-	private static int snsTypeListIndexToSnsTypeValue(int listIndex) {
-		switch (listIndex) {
-		case 0:
-			return SNSTYPE_OTHER;
-		case 1:
-			return SNSTYPE_GREE;
-		case 2:
-			return SNSTYPE_MOBGA;
+	private static int snsTypeListIndexToSnsTypeValue(int listIndex, boolean bJP) {
+		if (bJP) {
+			switch (listIndex) {
+			case 0:
+				return SNSTYPE_OTHER;
+			case 1:
+				return SNSTYPE_GREE;
+			case 2:
+				return SNSTYPE_MOBGA;
+			case 3:
+				return SNSTYPE_ANY_URL;
+			}
+		}
+		else {
+			switch (listIndex) {
+			case 0:
+				return SNSTYPE_OTHER;
+			case 1:
+				return SNSTYPE_ANY_URL;
+			}
 		}
 		return SNSTYPE_OTHER;
+	}
+
+	public static int snsTypeValueToSnsTypeListIndex(int snsTypeValue, boolean bJP) {
+		if (bJP) {
+			switch (snsTypeValue) {
+			case SNSTYPE_OTHER:
+				return 0;
+			case SNSTYPE_GREE:
+				return 1;
+			case SNSTYPE_MOBGA:
+				return 2;
+			case SNSTYPE_ANY_URL:
+				return 3;
+			}
+		}
+		else {
+			switch (snsTypeValue) {
+			case SNSTYPE_OTHER:
+				return 0;
+			case SNSTYPE_ANY_URL:
+				return 1;
+			}
+		}
+		return 0;
 	}
 
 	public String getLabel(Context context) {

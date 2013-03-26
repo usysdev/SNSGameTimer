@@ -13,6 +13,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -104,10 +106,54 @@ public class GameTimerSettingViewOnClickListenerImpl implements
 		// SNSの種類
         {
 			Spinner spinner = (Spinner)dialogView.findViewById(R.id.spinnerSnsType);
-			spinner.setSelection(settingsBean.snsTypeListIndex());
+			spinner.setSelection(settingsBean.snsTypeListIndex(StringUtil.isJP(dialogView.getContext())));
+			spinner.setOnItemSelectedListener(new OnItemSelectedListener(){
+
+				/* (non-Javadoc)
+				 * @see android.widget.AdapterView.OnItemSelectedListener#onItemSelected(android.widget.AdapterView, android.view.View, int, long)
+				 */
+				@Override
+				public void onItemSelected(AdapterView<?> arg0, View arg1,
+						int arg2, long arg3) {
+					// TODO Auto-generated method stub
+					final Spinner spinnerTarget = (Spinner)arg0;
+					if (spinnerTarget.getSelectedItemPosition() == GameTimerSettingsBean.snsTypeValueToSnsTypeListIndex(GameTimerSettingsBean.SNSTYPE_ANY_URL, StringUtil.isJP(arg1.getContext()))) {
+			        	dialogView.findViewById(R.id.tableRow_snsUrlTitle).setVisibility(View.VISIBLE);
+			        	dialogView.findViewById(R.id.tableRow_snsUrl).setVisibility(View.VISIBLE);
+					}
+					else {
+			        	dialogView.findViewById(R.id.tableRow_snsUrlTitle).setVisibility(View.GONE);
+			        	dialogView.findViewById(R.id.tableRow_snsUrl).setVisibility(View.GONE);
+					}
+				}
+
+				/* (non-Javadoc)
+				 * @see android.widget.AdapterView.OnItemSelectedListener#onNothingSelected(android.widget.AdapterView)
+				 */
+				@Override
+				public void onNothingSelected(AdapterView<?> arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
         }
 
-		// 静的テキスト
+        // 指定したURL
+        {
+        	final EditText editBox = (EditText)dialogView.findViewById(R.id.editSnsUrl);
+        	editBox.setText(settingsBean.snsUrl());
+        }
+        // 指定したURLの表示・非表示
+        if (settingsBean.snsType() == GameTimerSettingsBean.SNSTYPE_ANY_URL) {
+        	dialogView.findViewById(R.id.tableRow_snsUrlTitle).setVisibility(View.VISIBLE);
+        	dialogView.findViewById(R.id.tableRow_snsUrl).setVisibility(View.VISIBLE);
+        }
+        else {
+        	dialogView.findViewById(R.id.tableRow_snsUrlTitle).setVisibility(View.GONE);
+        	dialogView.findViewById(R.id.tableRow_snsUrl).setVisibility(View.GONE);
+        }
+        
+        // 静的テキスト
         {
 			final TextView textNotifyTextView = (TextView)dialogView.findViewById(R.id.textNotifyText);
 			textNotifyTextView.setText(settingsBean.notifyText());
@@ -118,10 +164,13 @@ public class GameTimerSettingViewOnClickListenerImpl implements
 			final TextView textNotifyLinkView = (TextView)dialogView.findViewById(R.id.textNotifyLink);
 			switch (settingsBean.snsType()) {
 			case GameTimerSettingsBean.SNSTYPE_GREE:
-				textNotifyLinkView.setText("GREE");
+				textNotifyLinkView.setText(buttonView.getContext().getString(R.string.sns_name_gree));
 				break;
 			case GameTimerSettingsBean.SNSTYPE_MOBGA:
-				textNotifyLinkView.setText("mobage");
+				textNotifyLinkView.setText(buttonView.getContext().getString(R.string.sns_name_mobage));
+				break;
+			case GameTimerSettingsBean.SNSTYPE_ANY_URL:
+				textNotifyLinkView.setText(settingsBean.snsUrl());
 				break;
 			default:
 				textNotifyLinkView.setText(buttonView.getContext().getString(R.string.this_application));
@@ -233,13 +282,14 @@ public class GameTimerSettingViewOnClickListenerImpl implements
     	    				final EditText editNotifyText = (EditText)dialogView.findViewById(R.id.editNotifyText);
         		        	final EditText editLaterMinute = (EditText)dialogView.findViewById(R.id.editLaterMinute);
         		        	final EditText editLaterHourMinuteHour = (EditText)dialogView.findViewById(R.id.editLaterHourMinuteHour);
-        	    	    	final Spinner spinnerLaterHourMinuteMinute = (Spinner)dialogView.findViewById(R.id.spinnerLaterHourMinuteMinute);
+							final EditText editTextSnsUrl = (EditText)dialogView.findViewById(R.id.editSnsUrl);
+        		        	final Spinner spinnerLaterHourMinuteMinute = (Spinner)dialogView.findViewById(R.id.spinnerLaterHourMinuteMinute);
         	        		final Spinner spinnerAtTimeHour = (Spinner)dialogView.findViewById(R.id.spinnerAtTimeHour);
 							final Spinner spinnerAtTimeMinute = (Spinner)dialogView.findViewById(R.id.spinnerAtTimeMinute);
 							final Spinner spinnerAtTimeDay = (Spinner)dialogView.findViewById(R.id.spinnerAtTimeDay);
 							final Spinner spinnerSnsType = (Spinner)dialogView.findViewById(R.id.spinnerSnsType);
 							final RadioGroup radioGroupNotifyTimeSelector = (RadioGroup)dialogView.findViewById(R.id.notifyTimeSelectorGroup);
-
+							
 							String laterMinute = "";
 							String laterHourMinuteHour = "";
 							int laterHourMinuteMinute = 0;
@@ -261,8 +311,14 @@ public class GameTimerSettingViewOnClickListenerImpl implements
 								atTimeMinute = spinnerAtTimeMinute.getSelectedItemPosition();
 								break;
 							}
-						
-    	    	        	final GameTimerSettingsBean newSettingsBean = new GameTimerSettingsBean(
+
+	        				// 指定したURLに対してスキーマ補正が必要であれば補正する。
+							String textSnsUrl = editTextSnsUrl.getText().toString();
+							if (!textSnsUrl.startsWith("http://") && !textSnsUrl.startsWith("https://")) {
+								textSnsUrl = "http://" + textSnsUrl;
+							}
+
+							final GameTimerSettingsBean newSettingsBean = new GameTimerSettingsBean(
 									// ID
         		        			settingsBean.id(),
         	    	    			// お知らせ内容
@@ -283,12 +339,16 @@ public class GameTimerSettingViewOnClickListenerImpl implements
         	        				spinnerSnsType.getSelectedItemPosition(),
         	        				// ソート順
         	        				settingsBean.sortOrder(),
+        	        				// 指定したURL
+        	        				textSnsUrl,
         	        				// ○日後
         	        				dialogView.getContext().getString(R.string.days_later),
         	        				// ○分後
         	        				dialogView.getContext().getString(R.string.minutes_later),
         	        				// ○時間
-        	        				dialogView.getContext().getString(R.string.hours));
+        	        				dialogView.getContext().getString(R.string.hours),
+        	        				// 言語判定
+        	        				StringUtil.isJP(dialogView.getContext()));
 
 	        	        	{
     	    	        		GameTimerDBHelper dbHelper = new GameTimerDBHelper(dialogView.getContext(), GameTimerDBHelper.DB_FILENAME, null, GameTimerDBHelper.DB_VERSION);
@@ -312,9 +372,11 @@ public class GameTimerSettingViewOnClickListenerImpl implements
 									raiseIntent.putExtra("beanId", newSettingsBean.id());
 									raiseIntent.putExtra("notifyText", newSettingsBean.notifyText());
 									raiseIntent.putExtra("snsType", newSettingsBean.snsType());
+									raiseIntent.putExtra("snsUrl", newSettingsBean.snsUrl());
 
 									if (Logger.isDebugEnabled()) {
-										Logger.debug("setNoritication:beanId=" + newSettingsBean.id() + ",notifyText=" + newSettingsBean.notifyText() + ",snsType=" + newSettingsBean.snsType());
+										Logger.debug("setNoritication:beanId=" + newSettingsBean.id() + ",notifyText=" + newSettingsBean.notifyText() + ",snsType=" + newSettingsBean.snsType() +
+											",snsUrl=" + newSettingsBean.snsUrl());
 									}
 
     	    	    				final PendingIntent sender = PendingIntent.getBroadcast(dialogView.getContext(), 0, raiseIntent, PendingIntent.FLAG_CANCEL_CURRENT);
@@ -365,6 +427,7 @@ public class GameTimerSettingViewOnClickListenerImpl implements
         		        			settingsBean.atTimeMinute(),
 									settingsBean.snsType(),
         	        				settingsBean.sortOrder(),
+        	        				settingsBean.snsUrl(),
         	        				// ○日後
         	        				dialogView.getContext().getString(R.string.days_later),
         	        				// ○分後

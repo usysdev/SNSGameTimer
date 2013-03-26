@@ -60,11 +60,13 @@ public class GameTimeStartStopButtonOnClickListenerImpl implements
 						settingsBean.atTimeDay(),
 						settingsBean.atTimeHour(),
        		        	settingsBean.atTimeMinute(),
-						settingsBean.snsType(),
+       		        	GameTimerSettingsBean.snsTypeValueToSnsTypeListIndex(settingsBean.snsType(), StringUtil.isJP(buttonView.getContext())),
         				settingsBean.sortOrder(),
+        				settingsBean.snsUrl(),
         				settingsBean.textDaysLater(),
         				settingsBean.textMinutesLater(),
-        				settingsBean.textHours());
+        				settingsBean.textHours(),
+        				StringUtil.isJP(buttonView.getContext()));
 
 			{
 				GameTimerDBHelper dbHelper = new GameTimerDBHelper(buttonView.getContext(), GameTimerDBHelper.DB_FILENAME, null, GameTimerDBHelper.DB_VERSION);
@@ -76,7 +78,7 @@ public class GameTimeStartStopButtonOnClickListenerImpl implements
         	    	db.close();
 				}
     		}
-
+			
 			// インテントをスケジュールする。
        	    {
        	    	final Intent raiseIntent = new Intent(buttonView.getContext(), GameTimerRaiseNotification.class);
@@ -88,7 +90,8 @@ public class GameTimeStartStopButtonOnClickListenerImpl implements
 					raiseIntent.putExtra("beanId", newSettingsBean.id());
 					raiseIntent.putExtra("notifyText", newSettingsBean.notifyText());
 					raiseIntent.putExtra("snsType", newSettingsBean.snsType());
-
+					raiseIntent.putExtra("snsUrl", newSettingsBean.snsUrl());
+					
 					if (Logger.isDebugEnabled()) {
 						Logger.debug("setNoritication:beanId=" + newSettingsBean.id() + ",notifyText=" + newSettingsBean.notifyText() + ",snsType=" + newSettingsBean.snsType());
 					}
