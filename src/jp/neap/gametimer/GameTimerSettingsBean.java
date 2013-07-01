@@ -22,7 +22,10 @@ public class GameTimerSettingsBean {
 	// 明明後日
     public static final int DAY_CALC_AFTER_3 = 2;
 
-	// グリー
+	// 明日
+    public static final int DAY_CALC_AFTER_1 = 3;
+
+    // グリー
     public static final int SNSTYPE_GREE = 0;
 
 	// モバゲー
@@ -188,7 +191,7 @@ public class GameTimerSettingsBean {
 				return;
 			}
 
-			if (((atTimeDayListIndex >= 0) && (atTimeDayListIndex <= 2)) &&
+			if (((atTimeDayListIndex >= 0) && (atTimeDayListIndex <= 3)) &&
 				((atTimeHourListIndex >= 1) && (atTimeHourListIndex <= 24)) &&
 				((atTimeMinuteListIndex >= 0) && (atTimeMinuteListIndex <= 59))) {
 				// 「0時○分」に決定
@@ -222,8 +225,14 @@ public class GameTimerSettingsBean {
 					}
 				}
 				else {
-					// 明後日以降
-					this.notifyDateTime = notifyDateTimeCandidate + ((long)(this.atTimeDay + 1) * 86400L * 1000L);
+					if (this.atTimeDay == DAY_CALC_AFTER_1) {
+						// 明日
+						this.notifyDateTime = notifyDateTimeCandidate + (86400L * 1000L);
+					}
+					else {
+						// 明後日以降
+						this.notifyDateTime = notifyDateTimeCandidate + ((long)(this.atTimeDay + 1) * 86400L * 1000L);
+					}
 				}
 				return;
 			}
@@ -440,13 +449,43 @@ public class GameTimerSettingsBean {
 			final StringBuffer buffer = new StringBuffer();
 			if ( atTimeDay > DAY_CALC_AUTO ) {
 				// ○日後
-				buffer.append((atTimeDay + 1))
-					  .append(textDaysLater);
+				if (atTimeDay == DAY_CALC_AFTER_1) {
+					buffer.append(1)
+					  	  .append(textDaysLater);
+				}
+				else {
+					buffer.append((atTimeDay + 1))
+						  .append(textDaysLater);
+				}
 			}
 			buffer.append(String.format("%02d:%02d", atTimeHour - 1, atTimeMinute));
 			return buffer.toString();
 		}
 		// ○分後
 		return laterMinute + textMinutesLater;
+	}
+
+	public static int atTimeDayToSelectionId(int value) {
+		switch (value) {
+		case DAY_CALC_AFTER_1:
+			return 1;
+		case DAY_CALC_AFTER_2:
+			return 2;
+		case DAY_CALC_AFTER_3:
+			return 3;
+		}
+		return 0;
+	}
+
+	public static int selectionIdToAtTimeDay(int value) {
+		switch (value) {
+		case 1:
+			return DAY_CALC_AFTER_1;
+		case 2:
+			return DAY_CALC_AFTER_2;
+		case 3:
+			return DAY_CALC_AFTER_3;
+		}
+		return DAY_CALC_AUTO;
 	}
 }

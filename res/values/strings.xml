@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Browser Game Timer</string>
     <string name="lang_test">EN</string>
+    <string name="co_operation">Co-op</string>
    	<string name="start_timer">Start</string>
 	<string name="upper_arrow">Up</string>
 	<string name="gametimer_list_button_dummy_text">1</string>
@@ -16,12 +17,13 @@
 	<string name="at_hour">Hour</string>
 	<string name="at_minute">Minute</string>
 	<string name="link_on_click_notification">Link on Clicking Notification</string>
-	<string name="system_default">System Default</string>
+	<string name="system_default_sound">Default Sound</string>
+	<string name="system_default_vib">Default Vibration</string>
 	<string name="game_1">Game1</string>
 	<string name="game_2">Game2</string>
 	<string name="game_3">Game3</string>
 	<string name="noodle">Noodle</string>
-	<string name="notification_sound">Notification Sound</string>
+	<string name="notification_method">Notification Sound/Vibe</string>
 	<string name="notification_from_gametimer">Notification From GameTimer</string>
 	<string name="undefined">Undefined</string>
 	<string name="timer_start">Start</string>
@@ -34,6 +36,7 @@
 	<string name="preference_settings">Preference</string>
 	<string-array name="day">
 		<item>-</item>
+		<item>1days Later</item>
 		<item>2days Later</item>
 		<item>3days Later</item>
     </string-array>

@@ -75,13 +75,19 @@ public class GameTimerPreferenceActivity extends Activity {
 			GameTimerDBHelper dbHelper = new GameTimerDBHelper(getApplicationContext(), GameTimerDBHelper.DB_FILENAME, null, GameTimerDBHelper.DB_VERSION);
 			SQLiteDatabase db = dbHelper.getReadableDatabase();
 			try {
-				// お知らせ通知音
+				// お知らせ通知音・バイブ
 				{
 					final String audioFileShortPath = dbHelper.getProperty(db, "audioFileShortPath", "");
+					final String notifyMethod = dbHelper.getProperty(db, "notifyMethod", "");
 					final Map<String,String> map = new HashMap<String,String>();
-					map.put("name", getResources().getString(R.string.notification_sound));
-					if ( "".equals(audioFileShortPath) ) {
-						map.put("value", getResources().getString(R.string.system_default));
+					map.put("name", getResources().getString(R.string.notification_method));
+					if ("".equals(audioFileShortPath)) {
+						if ("".equals(notifyMethod) || "system_sound".equals(notifyMethod)) {
+							map.put("value", getResources().getString(R.string.system_default_sound));
+						}
+						else {
+							map.put("value", getResources().getString(R.string.system_default_vib));
+						}
 					}
 					else {
 						map.put("value", audioFileShortPath);
@@ -125,14 +131,16 @@ public class GameTimerPreferenceActivity extends Activity {
 				// 新しい設定値を受け取る。
 				final String audioFileFullPath = bundle.getString("audioFileFullPath");
 				final String audioFileShortPath = bundle.getString("audioFileShortPath");
+				final String notifyMethod = bundle.getString("notifyMethod");
 
-				// 通知音を更新する。
+				// お知らせ通知方法を更新する。
 				{
 					GameTimerDBHelper dbHelper = new GameTimerDBHelper(getApplicationContext(), GameTimerDBHelper.DB_FILENAME, null, GameTimerDBHelper.DB_VERSION);
 					SQLiteDatabase db = dbHelper.getWritableDatabase();
 					try {
 						dbHelper.setProperty(db, "audioFileFullPath", audioFileFullPath);
 						dbHelper.setProperty(db, "audioFileShortPath", audioFileShortPath);
+						dbHelper.setProperty(db, "notifyMethod", notifyMethod);
 					}
 					finally {
 						db.close();
@@ -142,10 +150,11 @@ public class GameTimerPreferenceActivity extends Activity {
 				// 表示データを更新する。
 				{
 					final Map<String,String> map = preferenceDataList.get(0);
-					if ( "".equals(audioFileShortPath) ) {
-						map.put("value", getResources().getString(R.string.system_default));
-					}
-					else {
+					if ("system_sound".equals(notifyMethod)) {
+						map.put("value", getResources().getString(R.string.system_default_sound));
+					} else if ("system_vib".equals(notifyMethod)) {
+						map.put("value", getResources().getString(R.string.system_default_vib));
+					} else {
 						map.put("value", audioFileShortPath);
 					}
 				}

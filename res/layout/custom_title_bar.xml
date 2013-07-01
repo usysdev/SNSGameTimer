@@ -1,25 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>  
-<RelativeLayout
-			xmlns:android="http://schemas.android.com/apk/res/android"  
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"  
+	android:orientation="horizontal"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+>
 	<ImageView
 		android:id="@+id/title_icon"
-   		android:layout_width="wrap_content" 
-    	android:layout_height="wrap_content"
-   		android:src="@drawable/icon"
-    />
+		android:layout_width="wrap_content" 
+  		android:layout_height="wrap_content"
+		android:src="@drawable/icon"
+   	/>
 	<TextView
 		android:id="@+id/title_left_text"
-		android:layout_width="wrap_content"
+		android:layout_width="0dip"
 		android:layout_height="fill_parent"
 		android:layout_weight="1"
-		android:layout_toRightOf="@+id/title_icon"
 		android:gravity="center_vertical"
 		android:ellipsize="end"
 		android:singleLine="true"
 		style="?android:attr/windowTitleStyle"
 		android:text="@string/app_name"
 	/>
-</RelativeLayout>
+	<TextView
+		android:id="@+id/title_right_text"
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
+		android:gravity="center_vertical"
+		android:text="@string/co_operation"
+		android:textColor="#ffffff"
+	/>
+	<ImageView
+		android:id="@+id/title_nickname_changer"
+		android:layout_width="wrap_content" 
+   		android:layout_height="wrap_content"
+		android:gravity="center_vertical"
+		android:src="@drawable/icon_nickname_changer"
+   	/>
+</LinearLayout>

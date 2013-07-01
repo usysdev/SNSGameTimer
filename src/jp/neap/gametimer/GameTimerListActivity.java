@@ -5,6 +5,9 @@ package jp.neap.gametimer;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.net.Uri;
 import android.os.Bundle;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.MotionEvent;
@@ -16,6 +19,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.text.Html;
 import java.util.HashMap;
 import java.util.List;
@@ -138,6 +142,59 @@ public class GameTimerListActivity extends Activity
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title_bar);
 
 		reCreateList();
+
+		// ニックネーム一発変更の起動連携
+		{
+			final ImageView btnNickNameChanger = (ImageView)findViewById(R.id.title_nickname_changer);
+			btnNickNameChanger.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					boolean bNickNameChangerInstalled = false;
+					// ニックネーム一発変更がインストールされているか調べる
+					{
+						final PackageManager packageManager = view.getContext().getPackageManager();
+						try {
+							packageManager.getApplicationInfo("jp.neap.hanne", 0);
+							bNickNameChangerInstalled = true;
+						} catch (NameNotFoundException __ignore__) {}
+					}
+					if (bNickNameChangerInstalled) {
+						// ニックネーム一発変更を起動する
+						Intent intent = new Intent();
+						intent.setClassName("jp.neap.hanne", "jp.neap.hanne.MainActivity");						
+						startActivity(intent);
+					}
+					else {
+						// ニックネーム一発変更のダウンロードページ(Google Play)に遷移する
+						Intent intent = new Intent();
+						intent.setAction(Intent.ACTION_VIEW);
+						intent.setData(Uri.parse("market://details?id=jp.neap.hanne"));
+						startActivity(intent);
+					}
+				}
+			});
+			btnNickNameChanger.setOnTouchListener(new View.OnTouchListener() {
+				@Override
+				public boolean onTouch(View view, MotionEvent event) {
+					switch (event.getAction()) {
+					case MotionEvent.ACTION_DOWN:
+						{
+							final ImageView ivNickNameChanger = (ImageView)view.findViewById(R.id.title_nickname_changer);
+							ivNickNameChanger.setImageResource(R.drawable.icon_nickname_changer_mo);
+						}
+						break;
+					case MotionEvent.ACTION_MOVE:
+						break;
+					default:
+					{
+						final ImageView ivNickNameChanger = (ImageView)view.findViewById(R.id.title_nickname_changer);
+						ivNickNameChanger.setImageResource(R.drawable.icon_nickname_changer);
+					}
+					}
+					return false;
+				}
+			});
+		}
 	}
 
 	@Override

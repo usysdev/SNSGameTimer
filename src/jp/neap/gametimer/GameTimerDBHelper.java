@@ -348,10 +348,36 @@ public class GameTimerDBHelper extends SQLiteOpenHelper {
 	}
 
 	public void setProperty(SQLiteDatabase db, String propertyName, String propertyValue) {
-		final ContentValues assoc = new ContentValues();
+		if (hasProperty(db, propertyName)) {
+			final ContentValues assoc = new ContentValues();
+			assoc.put("property_value", propertyValue);
+			db.update(TABLE_NAME_PREFERENCE, assoc, "property_name=?", new String[]{propertyName});
+		}
+		else {
+			db.execSQL("INSERT INTO " + TABLE_NAME_PREFERENCE + " " +
+					"(property_name" +
+					",property_value) " +
+					"VALUES (" +
+						"'" + propertyName + "'" +
+						",'" + propertyValue + "'" +
+						")");
+		}
+	}
 
-		assoc.put("property_value", propertyValue);
-
-		db.update(TABLE_NAME_PREFERENCE, assoc, "property_name=?", new String[]{propertyName});
+	public boolean hasProperty(SQLiteDatabase db, String propertyName) {
+		final String[] params = new String[1];
+		params[0] = propertyName;
+		Cursor c = db.rawQuery(
+						"SELECT" +
+						" property_value" +
+						" FROM " + TABLE_NAME_PREFERENCE +
+						" WHERE property_name=?",
+						params);
+		try {
+			return c.moveToFirst();
+		}
+		finally {
+			c.close();
+		}
 	}
 }

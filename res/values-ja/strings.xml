@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">ソーシャルゲームタイマー</string>
     <string name="lang_test">JP</string>
+    <string name="co_operation">連携</string>
 	<string name="start_timer">開始</string>
 	<string name="upper_arrow">↑</string>
 	<string name="gametimer_list_button_dummy_text">1</string>
@@ -16,12 +17,13 @@
 	<string name="at_hour">時</string>
 	<string name="at_minute">分</string>
 	<string name="link_on_click_notification">お知らせクリック時のリンク先</string>
-	<string name="system_default">システムデフォルト</string>
+	<string name="system_default_sound">デフォルトサウンド</string>
+	<string name="system_default_vib">デフォルトバイブレーション</string>
 	<string name="game_1">ゲーム1</string>
 	<string name="game_2">ゲーム2</string>
 	<string name="game_3">ゲーム3</string>
 	<string name="noodle">ラーメン</string>
-	<string name="notification_sound">お知らせ通知音</string>
+	<string name="notification_method">お知らせ通知音/バイブ</string>
 	<string name="notification_from_gametimer">ゲームタイマーからのお知らせです</string>
 	<string name="undefined">未設定</string>
 	<string name="timer_start">開始</string>
@@ -34,6 +36,7 @@
 	<string name="preference_settings">設定</string>
 	<string-array name="day">
 		<item>-</item>
+		<item>1日後</item>
 		<item>2日後</item>
 		<item>3日後</item>
     </string-array>

@@ -51,22 +51,25 @@ public class GameTimerAudioFileListActivity extends Activity {
 		final ListView audioFileListView = (ListView)findViewById(R.id.audiofile_listview);
 
 		final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+
+		// 最初はシステムデフォルトサウンド
+		adapter.add(getResources().getString(R.string.system_default_sound));
+		audioFileFullPathList.add("");
+
+		// ２番目はシステムデフォルトバイブレーション
+		adapter.add(getResources().getString(R.string.system_default_vib));
+		audioFileFullPathList.add("");
+
+		// ３番目以降にSDカード上のファイルを加える
 		final List<String> audioFileList = listAudioFiles();
 		if ( audioFileList.size() > 0 ) {
-			// 最初はシステムデフォルト
-			adapter.add(getResources().getString(R.string.system_default));
-			audioFileFullPathList.add("");
-			// SDカード上のファイル
 			for (int i = 0 ; i < audioFileList.size(); i++) {
 				final String audioFilePath = audioFileList.get(i);
 				adapter.add(audioFilePath.substring(sdcardRootDir.length()));
 				audioFileFullPathList.add(audioFilePath);
 			}
 		}
-		else {
-			adapter.add(getResources().getString(R.string.system_default));
-			audioFileFullPathList.add("");
-		}
+
 		audioFileListView.setAdapter(adapter);
 
 		audioFileListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -84,6 +87,16 @@ public class GameTimerAudioFileListActivity extends Activity {
 				}
 				bundle.putString("audioFileFullPath", audioFileFullPath);
 				bundle.putString("audioFileShortPath", audioFileShortPath);
+				switch (position) {
+				case 0:
+					bundle.putString("notifyMethod", "system_sound");
+					break;
+				case 1:
+					bundle.putString("notifyMethod", "system_vib");
+					break;
+				default:
+					bundle.putString("notifyMethod", "user_sound");
+				}
 				data.putExtras(bundle);
 				setResult(RESULT_OK, data);
 				finish();

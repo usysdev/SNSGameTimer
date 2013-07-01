@@ -99,7 +99,7 @@ public class GameTimerSettingViewOnClickListenerImpl implements
         	}
         	{
 				Spinner spinner = (Spinner)dialogView.findViewById(R.id.spinnerAtTimeDay);
-				spinner.setSelection(settingsBean.atTimeDay());
+				spinner.setSelection(GameTimerSettingsBean.atTimeDayToSelectionId(settingsBean.atTimeDay()));
         	}
         }
 
@@ -306,7 +306,7 @@ public class GameTimerSettingViewOnClickListenerImpl implements
 								laterHourMinuteMinute = spinnerLaterHourMinuteMinute.getSelectedItemPosition();
 								break;
 							case R.id.radioAtTime:
-								atTimeDay = spinnerAtTimeDay.getSelectedItemPosition();
+								atTimeDay = GameTimerSettingsBean.selectionIdToAtTimeDay(spinnerAtTimeDay.getSelectedItemPosition());
 								atTimeHour = spinnerAtTimeHour.getSelectedItemPosition();
 								atTimeMinute = spinnerAtTimeMinute.getSelectedItemPosition();
 								break;

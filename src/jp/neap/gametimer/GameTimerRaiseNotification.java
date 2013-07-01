@@ -49,22 +49,32 @@ public class GameTimerRaiseNotification extends BroadcastReceiver {
 		}
 
 		final String audioFileFullPath;
+		final String notifyMethod; 
 		final GameTimerDBHelper dbHelper = new GameTimerDBHelper(context.getApplicationContext(), GameTimerDBHelper.DB_FILENAME, null, GameTimerDBHelper.DB_VERSION);
 		final SQLiteDatabase db = dbHelper.getReadableDatabase();
 		try {
 			audioFileFullPath = dbHelper.getProperty(db, "audioFileFullPath", "");
+			notifyMethod = dbHelper.getProperty(db, "notifyMethod", "");
 		}
 		finally {
 			db.close();
 		}			
 
 		final boolean isValidAudioFileFullPath;
+		final boolean isSystemDefaultSound;
 		if ( "".equals(audioFileFullPath) ) {
 			isValidAudioFileFullPath = false;
+			if ("".equals(notifyMethod) || "system_sound".equals(notifyMethod)) {
+				isSystemDefaultSound = true;
+			}
+			else {
+				isSystemDefaultSound = false;
+			}
 		}
 		else {
 			final File f = new File(audioFileFullPath);
 			isValidAudioFileFullPath = f.isFile();
+			isSystemDefaultSound = false;
 		}
 
 		NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -109,7 +119,12 @@ public class GameTimerRaiseNotification extends BroadcastReceiver {
 //			notification.sound = Uri.parse("android.resource://jp.neap.gametimer/" + R.raw.schoolchime);
 		}
 		else {
-			notification.defaults = notification.defaults | Notification.DEFAULT_SOUND;
+			if (isSystemDefaultSound) {
+				notification.defaults = notification.defaults | Notification.DEFAULT_SOUND;
+			}
+			else {
+				notification.defaults = notification.defaults | Notification.DEFAULT_VIBRATE;
+			}
 		}
 
 		// settingsBean.id() Ç™í ímíPà Ç∆Ç»ÇÈÅB
