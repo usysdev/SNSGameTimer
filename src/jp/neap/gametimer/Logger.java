@@ -12,7 +12,7 @@ import android.util.Log;
 public class Logger {
 
 	public static boolean isDebugEnabled() {
-		return false;
+		return true;
 	}
 
 	public static void debug(String message) {

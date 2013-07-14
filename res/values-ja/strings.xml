@@ -34,6 +34,8 @@
 	<string name="sns_name_mobage">mobage</string>
 	<string name="sns_specified_url">指定したURL</string>
 	<string name="preference_settings">設定</string>
+	<string name="usage_no_sdcard">利用可能な外部ストレージ(SDカード)が見つかりません</string>
+	<string name="usage_no_sound_file">SDカードの%1$sディレクトリ以下にサウンドファイルを置けば、ここに表示されます</string>
 	<string-array name="day">
 		<item>-</item>
 		<item>1日後</item>

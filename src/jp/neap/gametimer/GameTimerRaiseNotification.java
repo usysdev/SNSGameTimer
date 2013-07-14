@@ -25,6 +25,7 @@ public class GameTimerRaiseNotification extends BroadcastReceiver {
 	/* (non-Javadoc)
 	 * @see android.content.BroadcastReceiver#onReceive(android.content.Context, android.content.Intent)
 	 */
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onReceive(Context context, Intent intent) {
 
@@ -59,7 +60,7 @@ public class GameTimerRaiseNotification extends BroadcastReceiver {
 		finally {
 			db.close();
 		}			
-
+		
 		final boolean isValidAudioFileFullPath;
 		final boolean isSystemDefaultSound;
 		if ( "".equals(audioFileFullPath) ) {
@@ -75,6 +76,12 @@ public class GameTimerRaiseNotification extends BroadcastReceiver {
 			final File f = new File(audioFileFullPath);
 			isValidAudioFileFullPath = f.isFile();
 			isSystemDefaultSound = false;
+		}
+
+		if (Logger.isDebugEnabled()) {
+			Logger.debug("audioFileFullPath=" + audioFileFullPath);
+			Logger.debug("notifyMethod=" + notifyMethod);
+			Logger.debug("isValidAudioFileFullPath=" + isValidAudioFileFullPath);
 		}
 
 		NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);

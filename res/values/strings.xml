@@ -34,6 +34,8 @@
 	<string name="sns_name_mobage">mobage</string>
 	<string name="sns_specified_url">Specified URL</string>
 	<string name="preference_settings">Preference</string>
+	<string name="usage_no_sdcard">Available SD card not found.</string>
+	<string name="usage_no_sound_file">Please put audio files under %1$s directory of SD card.</string>
 	<string-array name="day">
 		<item>-</item>
 		<item>1days Later</item>
